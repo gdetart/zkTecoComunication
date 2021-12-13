@@ -1,0 +1,16 @@
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.exe
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.deps.json
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.runtimeconfig.json
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.runtimeconfig.dev.json
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.dll
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\ref\zkTecoTry.dll
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\bin\Debug\net5.0\zkTecoTry.pdb
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.csproj.AssemblyReference.cache
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.AssemblyInfoInputs.cache
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.AssemblyInfo.cs
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.csproj.CoreCompileInputs.cache
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.dll
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\ref\zkTecoTry.dll
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.pdb
+C:\Users\Trated\source\repos\zkTecoTry\zkTecoTry\obj\Debug\net5.0\zkTecoTry.genruntimeconfig.cache
