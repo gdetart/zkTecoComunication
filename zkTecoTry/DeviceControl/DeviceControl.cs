@@ -1,17 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace zkTecoTry.DeviceControl
 {
-    class DeviceControl:HelperSdk
+    class DeviceControl : HelperSdk
     {
 
         IntPtr h = IntPtr.Zero;
-        public string TcpConnectDevice(string ip, string password="", string port = "4370")
+
+
+        public static List<ZkAccess> SerchDevices()
+        {
+            int i = 0, j = 0;
+            byte[] buffer = new byte[64 * 1024];
+
+            string str = "";
+            string[] tmp = null;
+            string udp = "UDP";
+            string adr = "255.255.255.255";
+
+            List<ZkAccess> foundDevices = new();
+            int ret = SearchDevice(udp, adr, ref buffer[0]);
+            if (ret >= 0)
+            {
+                str = Encoding.Default.GetString(buffer);
+                str = str.Replace("\r\n", "\t");
+                tmp = str.Split('\t');
+
+
+                //int p = this.lsvseardev.Items.Count;
+                while (j < tmp.Length - 1)
+                {
+
+                    string[] sub_str = tmp[j].Split(',');
+                    ZkAccess access = new(sub_str[1].Split('=')[1], sub_str[0].Split('=')[1], sub_str[2].Split('=')[1], sub_str[3].Split('=')[1], sub_str[4].Split('=')[1]);
+                    foundDevices.Add(access);
+
+                    i++;        //The next line of the list box
+                    j++;        //The next column of each row
+                }
+            }
+            return foundDevices;
+        }
+
+        public static bool AssignNewIpToController(string MacAddress, string IpToAssign)
+        {
+
+            string buffer = $"MAC={MacAddress},IPAddress={IpToAssign}";
+            int ret = ModifyIPAddress("UDP", "255.255.255.255", buffer);
+            if (ret >= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public string TcpConnectDevice(string ip, string password = "", string port = "4370")
         {
             if (IntPtr.Zero == h)
             {
@@ -21,55 +68,66 @@ namespace zkTecoTry.DeviceControl
             return "not working";
         }
 
-        public void SerchDevices()
+
+        //Operations for LockOut control
+        public string LockOut(int LockNumber, [Range(0, 255)] int Delay)
         {
-            int ret = 0, i = 0, j = 0, k = 0;
-            byte[] buffer = new byte[64 * 1024];
-            string str = "";
-            string[] filed = null;
-            string[] tmp = null;
-            string udp = "UDP";
-            string adr = "255.255.255.255";
+            var ret = ControlDevice(h, 1, LockNumber, 1, Delay, 1, "");
 
-            Console.WriteLine("Start to SearchDevice!");
-
-            ret = SearchDevice(udp, adr, ref buffer[0]);
-            Console.WriteLine("ret searchdevice=" + ret);
             if (ret >= 0)
             {
-                str = Encoding.Default.GetString(buffer);
-                str = str.Replace("\r\n", "\t");
-                tmp = str.Split('\t');
-
-                //int p = this.lsvseardev.Items.Count;
-                while (j < tmp.Length - 1)
-                {
-
-                    k = 0;
-                    string[] sub_str = tmp[j].Split(',');
-                    //MessageBox.Show(tmp[0]);
-
-                    filed = sub_str[k++].Split('=');
-                    string MacAddress = filed[1];
-
-                    filed = sub_str[k++].Split('=');
-                    string ipAddress = (filed[1]);
-
-                    filed = sub_str[k++].Split('=');
-                    string sNumber =(filed[1]);
-
-                    filed = sub_str[k++].Split('=');
-                    string model=(filed[1]);
-
-                    filed = sub_str[k++].Split('=');
-                    string softwareVersion = (filed[1]);
-
-                    Console.WriteLine($"Ip Address : {ipAddress}, Mac Address : {MacAddress}, Serial Number : {sNumber}, Device Model : {model}, Software Version : {softwareVersion}");
-
-                    i++;        //The next line of the list box
-                    j++;        //The next column of each row
-                }
+                return "Sucessfull";
             }
+            return "UnSucessfull";
+
         }
+
+        //Operations for AuxOut control
+        public string AuxOut(int AuxNumber, [Range(0, 255)] int Delay)
+        {
+            var ret = ControlDevice(h, 1, AuxNumber, 2, Delay, 1, "");
+
+            if (ret >= 0)
+            {
+                return "Sucessfull";
+            }
+            return "UnSucessfull";
+
+        }
+
+        //Cancel Alarm
+        public string CancelAlarm()
+        {
+            var ret = ControlDevice(h, 2, 0, 0, 0, 1, null);
+            if (ret >= 0)
+            {
+                return "Sucessfull";
+            }
+            return "UnSucessfull";
+        }
+
+        //Restart Device
+        public string RestartDevice()
+        {
+            var ret = ControlDevice(h, 3, 0, 0, 0, 1, null);
+            if (ret >= 0)
+            {
+                return "Sucessfull";
+            }
+            return "UnSucessfull";
+        }
+        
+
+        //Set Door state 1 == always Normal Open, 2== Always Normal Close
+        public string DoorState(int LockNumber,[Range(0,1)] int State)
+        {
+            var ret = ControlDevice(h,4, LockNumber, State, 0, 1, null);
+            if (ret >= 0)
+            {
+                return "Sucessfull";
+            }
+            return "UnSucessfull";
+        }
+    
     }
 }

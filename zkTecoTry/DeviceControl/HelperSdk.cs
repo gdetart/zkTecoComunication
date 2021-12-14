@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace zkTecoTry.DeviceControl
 {
@@ -67,8 +69,23 @@ namespace zkTecoTry.DeviceControl
         [DllImport("C:\\WINDOWS\\system32\\plcommpro.dll", EntryPoint = "ProcessBackupData")]
         public static extern int ProcessBackupData(byte[] data, int fileLen, ref byte Buffer, int BufferSize);
 
+    }
 
+    class ZkAccess
+    {
+        public string MacAddress { get; set; }
+        public string IpAddress { get; set; }
+        public string SerialNumber { get; set; }
+        public string Model { get; set; }
+        public string SoftwareVersion { get; set; }
 
-
+        public ZkAccess(string ip, string mac, string sn, string model, string version)
+        {
+            this.IpAddress = ip;
+            this.MacAddress = mac;
+            this.SerialNumber = sn;
+            this.Model = model;
+            this.SoftwareVersion = version;
+        }
     }
 }

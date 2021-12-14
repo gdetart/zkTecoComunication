@@ -8,7 +8,7 @@ namespace zkTecoTry
         static void Main(string[] args)
         {
             DeviceControl.DeviceControl device = new();
-            device.SerchDevices();
+            DeviceControl.DeviceControl.AssignNewIpToController("00:17:61:C8:CB:9C", "192.168.0.202");
 
 
         }
