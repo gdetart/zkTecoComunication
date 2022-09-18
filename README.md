@@ -7,4 +7,4 @@ This works with c3 series
 Make sure that you have the .dll files in the sys32 and 64 or it will throw errors.
 In case you need Dll-s please contact me so I can provide them
 
-![alt text](https://5.imimg.com/data5/SELLER/Default/2021/8/AY/BB/DF/68212473/c3200-c3400-access-control-biometric-zkteco-tripod-trunstile-banner-1000x1000.png)
+![alt text](https://tecnosinergia.zendesk.com/hc/article_attachments/360007659451/mceclip0.png)
